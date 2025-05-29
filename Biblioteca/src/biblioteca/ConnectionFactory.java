@@ -5,18 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    
-    public Connection conectaBD(){
-        Connection conn = null;
-        try{
-            String url = "jdbc:mysql://localhost:3306/cadastro?useSSl=false";
-            String user = "root";
-            String password = "";
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException erro){
-            System.out.println("Erro "+erro.getMessage());
-        }
-        return conn;
+
+    // Configurações da conexão com o banco de dados
+    private static final String URL = "jdbc:mysql://localhost:3306/cadastro?useSSL=false";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
+    /**
+     * Retorna uma conexão com o banco de dados MySQL
+     * 
+     * @return Connection ativa
+     * @throws SQLException caso ocorra erro na conexão
+     */
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-    
 }
